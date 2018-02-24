@@ -19,10 +19,7 @@ class GithubSearchClient: GithubSearchService
 {
     func searchUsers(with username: String, callback: @escaping ([GithubUser]?, String?) -> ())
     {
-        let params: [String: Any] = [
-            "q": username
-        ]
-        Alamofire.request("https://api.github.com/search/users",parameters: params).responseData { response in
+        Alamofire.request("https://api.github.com/search/users",parameters: createParams(username)).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -37,10 +34,7 @@ class GithubSearchClient: GithubSearchService
     
     func searchRepositories(with name: String, callback: @escaping ([GithubRepository]?, String?) -> ())
     {
-        let params: [String: Any] = [
-            "q": name
-        ]
-        Alamofire.request("https://api.github.com/search/repositories",parameters: params).responseData { response in
+        Alamofire.request("https://api.github.com/search/repositories",parameters: createParams(name)).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -51,5 +45,12 @@ class GithubSearchClient: GithubSearchService
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    private func createParams(_ query: String) -> Parameters
+    {
+        return [
+            "q": query
+        ]
     }
 }

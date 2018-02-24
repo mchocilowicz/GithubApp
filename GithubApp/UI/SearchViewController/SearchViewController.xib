@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="GithubApp" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="ZaY-aD-hC3" id="VK9-Z3-ufK"/>
+                <outlet property="view" destination="7rS-xN-IGu" id="WX0-7f-5X7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7rS-xN-IGu">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="id9-pH-G9a">
+                    <rect key="frame" x="0.0" y="40" width="375" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="searchTextChanged:" destination="-1" eventType="editingChanged" id="fR7-Q1-gmO"/>
+                    </connections>
+                </textField>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-aD-hC3">
+                    <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="id9-pH-G9a" firstAttribute="top" secondItem="96A-Ac-DRi" secondAttribute="top" constant="20" id="1r3-Td-4VZ"/>
+                <constraint firstItem="96A-Ac-DRi" firstAttribute="trailing" secondItem="id9-pH-G9a" secondAttribute="trailing" id="6ex-Iv-nYc"/>
+                <constraint firstItem="ZaY-aD-hC3" firstAttribute="leading" secondItem="96A-Ac-DRi" secondAttribute="leading" id="HMb-JF-fBj"/>
+                <constraint firstItem="96A-Ac-DRi" firstAttribute="bottom" secondItem="ZaY-aD-hC3" secondAttribute="bottom" id="Hem-rm-AfV"/>
+                <constraint firstItem="96A-Ac-DRi" firstAttribute="trailing" secondItem="ZaY-aD-hC3" secondAttribute="trailing" id="Y3R-I9-P92"/>
+                <constraint firstItem="ZaY-aD-hC3" firstAttribute="top" secondItem="id9-pH-G9a" secondAttribute="bottom" constant="8" id="wCd-kK-DLO"/>
+                <constraint firstItem="id9-pH-G9a" firstAttribute="leading" secondItem="96A-Ac-DRi" secondAttribute="leading" id="wMD-fc-XI1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="96A-Ac-DRi"/>
+        </view>
+    </objects>
+</document>

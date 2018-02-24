@@ -13,7 +13,6 @@
 		D31CB15D20419FBA00737D15 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31CB15B20419FBA00737D15 /* LaunchScreen.storyboard */; };
 		D31CB16820419FBA00737D15 /* GithubAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB16720419FBA00737D15 /* GithubAppTests.swift */; };
 		D31CB17A2041A33900737D15 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1782041A33900737D15 /* SearchViewController.swift */; };
-		D31CB17D2041A36E00737D15 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31CB17C2041A36E00737D15 /* SearchViewController.storyboard */; };
 		D31CB1802041A38F00737D15 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB17F2041A38F00737D15 /* ProfileViewController.swift */; };
 		D31CB1822041A3A200737D15 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1812041A3A200737D15 /* ProfileViewController.storyboard */; };
 		D31CB1862041A5FC00737D15 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1842041A5FC00737D15 /* SearchCell.swift */; };
@@ -21,6 +20,7 @@
 		D31CB18C2041DCA100737D15 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB18B2041DCA100737D15 /* GithubClient.swift */; };
 		D31CB18E2041E17D00737D15 /* GithubModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB18D2041E17D00737D15 /* GithubModel.swift */; };
 		D31CB1902041E4FD00737D15 /* GithubModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB18F2041E4FD00737D15 /* GithubModelType.swift */; };
+		D31CB1922042263900737D15 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1912042263900737D15 /* SearchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		D31CB16720419FBA00737D15 /* GithubAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAppTests.swift; sourceTree = "<group>"; };
 		D31CB16920419FBA00737D15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D31CB1782041A33900737D15 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D31CB17C2041A36E00737D15 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		D31CB17F2041A38F00737D15 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D31CB1812041A3A200737D15 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		D31CB1842041A5FC00737D15 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		D31CB18B2041DCA100737D15 /* GithubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
 		D31CB18D2041E17D00737D15 /* GithubModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubModel.swift; sourceTree = "<group>"; };
 		D31CB18F2041E4FD00737D15 /* GithubModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubModelType.swift; sourceTree = "<group>"; };
+		D31CB1912042263900737D15 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +139,7 @@
 			children = (
 				D31CB1832041A5A700737D15 /* SearchCell */,
 				D31CB1782041A33900737D15 /* SearchViewController.swift */,
-				D31CB17C2041A36E00737D15 /* SearchViewController.storyboard */,
+				D31CB1912042263900737D15 /* SearchViewController.xib */,
 			);
 			path = SearchViewController;
 			sourceTree = "<group>";
@@ -285,9 +285,9 @@
 			files = (
 				D31CB1872041A5FC00737D15 /* SearchCell.xib in Resources */,
 				D31CB15D20419FBA00737D15 /* LaunchScreen.storyboard in Resources */,
+				D31CB1922042263900737D15 /* SearchViewController.xib in Resources */,
 				D31CB15A20419FBA00737D15 /* Assets.xcassets in Resources */,
 				D31CB1822041A3A200737D15 /* ProfileViewController.storyboard in Resources */,
-				D31CB17D2041A36E00737D15 /* SearchViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

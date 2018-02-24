@@ -29,16 +29,23 @@ class SearchViewController: UIViewController
     
 // MARK: Memory Managment
     
+    init(_ service: GithubSearchService)
+    {
+        super.init(nibName: "SearchViewController", bundle: nil)
+        self.githubSearchService = service
+    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit
     {
         cancelScheduledSearch()
     }
     
-// MARK: View Lifecycle
-    
-    override func awakeFromNib() {
-        githubSearchService = GithubSearchClient()
-    }
+// MARK: - View Lifecycle
     
     override func viewDidLoad()
     {
@@ -48,7 +55,7 @@ class SearchViewController: UIViewController
         self.tableView.register(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: cellId)
     }
     
-// MARK: Action handlers
+// MARK: - Action handlers
     
     @IBAction func searchTextChanged(_ sender: UITextField)
     {
@@ -57,7 +64,7 @@ class SearchViewController: UIViewController
         scheduleSearch(searchString: text)
         
     }
-    
+
     @objc func onSearchTimer(_ sender: Timer)
     {
         if let text = sender.userInfo as? String {
@@ -65,7 +72,7 @@ class SearchViewController: UIViewController
         }
     }
     
-// MARK: Private
+// MARK: - Private
     
     private func scheduleSearch(searchString: String)
     {
