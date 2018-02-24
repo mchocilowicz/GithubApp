@@ -20,9 +20,10 @@ class SearchViewController: UIViewController
     
 // MARK: Privates
     
-    private var userModels: [GithubUser] = []
-    private var repositoryModels: [GithubRepository] = []
+    private var userModels: [GithubModel] = []
+    private var repositoryModels: [GithubModel] = []
     private let dispatchGroup = DispatchGroup()
+    private let cellId = "Cell"
     
 // MARK: View Lifecycle
     
@@ -35,6 +36,7 @@ class SearchViewController: UIViewController
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        self.tableView.register(UINib(nibName: "SearchCell", bundle: nil), forCellReuseIdentifier: cellId)
     }
     
 // MARK: Action handlers
@@ -44,19 +46,41 @@ class SearchViewController: UIViewController
         guard let text = sender.text, !text.isEmpty else { return }
         dispatchGroup.enter()
         githubSearchService.searchRepositories(with: text) { result , error in
-            self.repositoryModels = result!
+            guard let model = result else {
+                self.displayAlertOnError(error!)
+                return
+            }
+            self.repositoryModels = model
             self.dispatchGroup.leave()
         }
         dispatchGroup.enter()
         githubSearchService.searchUsers(with: text) { result, error in
-            self.userModels = result!
+            guard let model = result else {
+                self.displayAlertOnError(error!)
+                return
+            }
+            self.userModels = model
             self.dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
-            
+            self.tableViewModels.removeAll()
+            self.tableViewModels += self.repositoryModels
+            self.tableViewModels += self.userModels
+            self.tableViewModels.sort(by: { (first, second) -> Bool in
+                first.getId() < second.getId()
+            })
+            self.tableView.reloadData()
         }
         
-        
+    }
+    
+// MARK: Private
+    
+    private func displayAlertOnError(_ message: String)
+    {
+        let alert = UIAlertController(title: nil, message: "Error occured. Please try again", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
 }
@@ -64,14 +88,23 @@ class SearchViewController: UIViewController
 // MARK: - UITableViewDataSource UITableViewDelegate
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate
 {
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 0
+        return tableViewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) as? SearchCell {
+            let model = tableViewModels[indexPath.row]
+            cell.assign(model.getName(), model.getModelType())
+            return cell
+        }
         return UITableViewCell()
     }
     
