@@ -23,16 +23,30 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="searchValueChanged:" destination="YCy-zU-AxN" eventType="valueChanged" id="evz-lh-gDX"/>
+                                </connections>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CSS-nn-tev">
+                                <rect key="frame" x="0.0" y="78" width="375" height="589"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="FnF-bl-26Z" firstAttribute="trailing" secondItem="CSS-nn-tev" secondAttribute="trailing" id="Fpu-X7-bzI"/>
+                            <constraint firstItem="FnF-bl-26Z" firstAttribute="bottom" secondItem="CSS-nn-tev" secondAttribute="bottom" id="MOO-rp-A5D"/>
                             <constraint firstItem="FnF-bl-26Z" firstAttribute="trailing" secondItem="HPu-9h-dHB" secondAttribute="trailing" id="Nph-19-LR6"/>
                             <constraint firstItem="HPu-9h-dHB" firstAttribute="top" secondItem="FnF-bl-26Z" secondAttribute="top" constant="20" id="QjW-8y-gLT"/>
+                            <constraint firstItem="CSS-nn-tev" firstAttribute="top" secondItem="HPu-9h-dHB" secondAttribute="bottom" constant="8" id="cLa-P9-v6g"/>
                             <constraint firstItem="HPu-9h-dHB" firstAttribute="leading" secondItem="FnF-bl-26Z" secondAttribute="leading" id="lb7-Gt-Erg"/>
+                            <constraint firstItem="CSS-nn-tev" firstAttribute="leading" secondItem="FnF-bl-26Z" secondAttribute="leading" id="qlQ-Q6-wNI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FnF-bl-26Z"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="CSS-nn-tev" id="9zr-p7-45j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IFu-uu-obL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
