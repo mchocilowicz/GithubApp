@@ -15,7 +15,20 @@ class SearchViewController: UIViewController
     
     @IBOutlet weak var tableView: UITableView!
     
+    var githubSearchService: GithubSearchService! = nil
+    var tableViewModels: [GithubModel] = []
+    
+// MARK: Privates
+    
+    private var userModels: [GithubUser] = []
+    private var repositoryModels: [GithubRepository] = []
+    private let dispatchGroup = DispatchGroup()
+    
 // MARK: View Lifecycle
+    
+    override func awakeFromNib() {
+        githubSearchService = GithubSearchClient()
+    }
     
     override func viewDidLoad()
     {
@@ -23,19 +36,29 @@ class SearchViewController: UIViewController
         tableView.dataSource = self
         tableView.delegate = self
     }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        
-    }
     
 // MARK: Action handlers
     
-    @IBAction func searchValueChanged(_ sender: Any)
+    @IBAction func searchTextChanged(_ sender: UITextField)
     {
+        guard let text = sender.text, !text.isEmpty else { return }
+        dispatchGroup.enter()
+        githubSearchService.searchRepositories(with: text) { result , error in
+            self.repositoryModels = result!
+            self.dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        githubSearchService.searchUsers(with: text) { result, error in
+            self.userModels = result!
+            self.dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            
+        }
+        
         
     }
+    
 }
 
 // MARK: - UITableViewDataSource UITableViewDelegate
