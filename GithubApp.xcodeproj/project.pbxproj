@@ -18,6 +18,7 @@
 		D31CB1822041A3A200737D15 /* ProfileViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1812041A3A200737D15 /* ProfileViewController.storyboard */; };
 		D31CB1862041A5FC00737D15 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1842041A5FC00737D15 /* SearchCell.swift */; };
 		D31CB1872041A5FC00737D15 /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1852041A5FC00737D15 /* SearchCell.xib */; };
+		D31CB18C2041DCA100737D15 /* GithubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB18B2041DCA100737D15 /* GithubClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D31CB1812041A3A200737D15 /* ProfileViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewController.storyboard; sourceTree = "<group>"; };
 		D31CB1842041A5FC00737D15 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		D31CB1852041A5FC00737D15 /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		D31CB18B2041DCA100737D15 /* GithubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		D31CB15120419FBA00737D15 /* GithubApp */ = {
 			isa = PBXGroup;
 			children = (
+				D31CB1882041DC6900737D15 /* Common */,
 				D31CB1762041A2F600737D15 /* UI */,
 				D31CB15220419FBA00737D15 /* AppDelegate.swift */,
 				D31CB15920419FBA00737D15 /* Assets.xcassets */,
@@ -153,6 +156,30 @@
 				D31CB1852041A5FC00737D15 /* SearchCell.xib */,
 			);
 			path = SearchCell;
+			sourceTree = "<group>";
+		};
+		D31CB1882041DC6900737D15 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				D31CB18A2041DC8200737D15 /* Services */,
+				D31CB1892041DC7800737D15 /* Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		D31CB1892041DC7800737D15 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D31CB18A2041DC8200737D15 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D31CB18B2041DCA100737D15 /* GithubClient.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FD8CFD2E0C95CBA204C2DF60 /* Pods */ = {
@@ -322,6 +349,7 @@
 			files = (
 				D31CB17A2041A33900737D15 /* SearchViewController.swift in Sources */,
 				D31CB1862041A5FC00737D15 /* SearchCell.swift in Sources */,
+				D31CB18C2041DCA100737D15 /* GithubClient.swift in Sources */,
 				D31CB1802041A38F00737D15 /* ProfileViewController.swift in Sources */,
 				D31CB15320419FBA00737D15 /* AppDelegate.swift in Sources */,
 			);
