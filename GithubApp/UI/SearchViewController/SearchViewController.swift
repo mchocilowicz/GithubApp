@@ -24,6 +24,15 @@ class SearchViewController: UIViewController
     private var repositoryModels: [GithubModel] = []
     private let dispatchGroup = DispatchGroup()
     private let cellId = "Cell"
+    private let searchDelay: Double = 0.7
+    private var searchTimer: Timer? = nil
+    
+// MARK: Memory Managment
+    
+    deinit
+    {
+        cancelScheduledSearch()
+    }
     
 // MARK: View Lifecycle
     
@@ -44,6 +53,27 @@ class SearchViewController: UIViewController
     @IBAction func searchTextChanged(_ sender: UITextField)
     {
         guard let text = sender.text, !text.isEmpty else { return }
+        cancelScheduledSearch()
+        scheduleSearch(searchString: text)
+        
+    }
+    
+    @objc func onSearchTimer(_ sender: Timer)
+    {
+        if let text = sender.userInfo as? String {
+            self.requestData(text)
+        }
+    }
+    
+// MARK: Private
+    
+    private func scheduleSearch(searchString: String)
+    {
+        self.searchTimer = Timer.scheduledTimer(timeInterval: searchDelay, target: self, selector: #selector(onSearchTimer(_:)), userInfo: searchString, repeats: false)
+    }
+    
+    private func requestData(_ text: String)
+    {
         dispatchGroup.enter()
         githubSearchService.searchRepositories(with: text) { result , error in
             guard let model = result else {
@@ -63,24 +93,30 @@ class SearchViewController: UIViewController
             self.dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main) {
-            self.tableViewModels.removeAll()
-            self.tableViewModels += self.repositoryModels
-            self.tableViewModels += self.userModels
-            self.tableViewModels.sort(by: { (first, second) -> Bool in
-                first.getId() < second.getId()
-            })
-            self.tableView.reloadData()
+            self.processDataBeforeDisplay()
         }
-        
     }
-    
-// MARK: Private
     
     private func displayAlertOnError(_ message: String)
     {
         let alert = UIAlertController(title: nil, message: "Error occured. Please try again", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    private func processDataBeforeDisplay()
+    {
+        self.tableViewModels.removeAll()
+        self.tableViewModels += self.repositoryModels
+        self.tableViewModels += self.userModels
+        self.tableViewModels.sort(by: { $0.getId() < $1.getId() })
+        self.tableView.reloadData()
+    }
+    
+    private func cancelScheduledSearch()
+    {
+        self.searchTimer?.invalidate()
+        self.searchTimer = nil
     }
     
 }
