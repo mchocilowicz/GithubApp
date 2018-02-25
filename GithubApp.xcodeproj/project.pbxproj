@@ -22,6 +22,8 @@
 		D31CB1922042263900737D15 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1912042263900737D15 /* SearchViewController.xib */; };
 		D31CB1942042C8F200737D15 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D31CB1932042C8F200737D15 /* ProfileViewController.xib */; };
 		D31CB1962042CD5400737D15 /* GithubProfileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1952042CD5400737D15 /* GithubProfileClient.swift */; };
+		D31CB1982042D15F00737D15 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1972042D15F00737D15 /* ProfileModel.swift */; };
+		D31CB19A2042D23E00737D15 /* GithubProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31CB1992042D23E00737D15 /* GithubProfileResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		D31CB1912042263900737D15 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		D31CB1932042C8F200737D15 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		D31CB1952042CD5400737D15 /* GithubProfileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubProfileClient.swift; sourceTree = "<group>"; };
+		D31CB1972042D15F00737D15 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		D31CB1992042D23E00737D15 /* GithubProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubProfileResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				D31CB18D2041E17D00737D15 /* GithubModel.swift */,
+				D31CB1972042D15F00737D15 /* ProfileModel.swift */,
+				D31CB1992042D23E00737D15 /* GithubProfileResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31CB1982042D15F00737D15 /* ProfileModel.swift in Sources */,
 				D31CB17A2041A33900737D15 /* SearchViewController.swift in Sources */,
 				D31CB1862041A5FC00737D15 /* SearchCell.swift in Sources */,
 				D31CB18C2041DCA100737D15 /* GithubSearchClient.swift in Sources */,
@@ -364,6 +371,7 @@
 				D31CB18E2041E17D00737D15 /* GithubModel.swift in Sources */,
 				D31CB15320419FBA00737D15 /* AppDelegate.swift in Sources */,
 				D31CB1962042CD5400737D15 /* GithubProfileClient.swift in Sources */,
+				D31CB19A2042D23E00737D15 /* GithubProfileResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

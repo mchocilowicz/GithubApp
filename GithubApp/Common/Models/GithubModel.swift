@@ -13,6 +13,7 @@ protocol GithubModel
     func getId() -> Int
     func getName() -> String
     func getModelType() -> GithubModelType
+    func getAvatarUrl() -> String?
 }
 
 
@@ -32,8 +33,10 @@ struct GithubRepositoryResponse: Codable
 
 struct GithubUser: Codable, GithubModel
 {
+    
     private let login: String
     private let id: Int
+    private let avatar_url: String
     private let modelType: GithubModelType = .user
     
     func getId() -> Int {
@@ -47,12 +50,18 @@ struct GithubUser: Codable, GithubModel
     func getModelType() -> GithubModelType {
         return modelType
     }
+    
+    func getAvatarUrl() -> String? {
+        return avatar_url
+    }
 }
 
 struct GithubRepository: Codable, GithubModel
 {
+    
     private let name: String
     private let id: Int
+    private let stargazers_count: Int
     private let modelType: GithubModelType = .repository
     
     func getId() -> Int {
@@ -65,5 +74,9 @@ struct GithubRepository: Codable, GithubModel
     
     func getModelType() -> GithubModelType {
         return modelType
+    }
+    
+    func getAvatarUrl() -> String? {
+        return nil
     }
 }

@@ -156,6 +156,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let model = tableViewModels[indexPath.row]
+        if model.getModelType() == .user {
+            let profileModel = ProfileModel(username: model.getName(), avatar_url: model.getAvatarUrl()!)
+            let profilViewController = ProfileViewController(GithubProfileClient(),model: profileModel)
+            self.present(profilViewController, animated: true)
+        }
         
     }
 }

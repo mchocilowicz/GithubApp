@@ -19,15 +19,15 @@ class ProfileViewController: UIViewController
     @IBOutlet weak var followersLabel: UILabel!
     
     var githubProfileService: GithubProfileService! = nil
-    var profileModel: String! = nil
+    var profileModel: ProfileModel! = nil
     
 // MARK: Memory Managment
     
-    init(_ service: GithubProfileService, username: String)
+    init(_ service: GithubProfileService, model: ProfileModel)
     {
         super.init(nibName: "ProfileViewController", bundle: nil)
         self.githubProfileService = service
-        self.profileModel = username
+        self.profileModel = model
     }
     
     required init?(coder aDecoder: NSCoder)
@@ -43,9 +43,24 @@ class ProfileViewController: UIViewController
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning()
+    override func viewWillAppear(_ animated: Bool)
     {
-        super.didReceiveMemoryWarning()
+        githubProfileService.getProfileData(for: profileModel.username) {_,_ in
+            
+        }
+        githubProfileService.getStars(for: profileModel.username) {_,_ in
+            
+        }
+        githubProfileService.getUserAvatar(with: profileModel.avatar_url) { avatar in
+            self.avatarImage.image = avatar
+        }
+    }
+    
+// MARK: Action Handlers
+    
+    @IBAction func onTouchUpInside(_ sender: Any)
+    {
+        self.dismiss(animated: true)
     }
     
 }
