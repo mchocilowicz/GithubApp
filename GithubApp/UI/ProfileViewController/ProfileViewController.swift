@@ -41,17 +41,23 @@ class ProfileViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        usernameLabel.text = profileModel.username
     }
 
     override func viewWillAppear(_ animated: Bool)
     {
-        githubProfileService.getProfileData(for: profileModel.username) {_,_ in
-            
+        githubProfileService.getProfileData(for: profileModel.username) {[weak self] result , error in
+            guard let model = result, let `self` = self else {return}
+            self.followersLabel.text = "\(model.followers)"
         }
-        githubProfileService.getStars(for: profileModel.username) {_,_ in
-            
+        githubProfileService.getStars(for: profileModel.username) { [weak self] models , error in
+            guard let list = models, let `self` = self else {return}
+            var stars: Int = 0
+            list.forEach{ stars += $0.stargazers_count}
+            self.starsLabel.text = "\(stars)"
         }
-        githubProfileService.getUserAvatar(with: profileModel.avatar_url) { avatar in
+        githubProfileService.getUserAvatar(with: profileModel.avatar_url) {[weak self] avatar in
+            guard let `self` = self else { return }
             self.avatarImage.image = avatar
         }
     }
