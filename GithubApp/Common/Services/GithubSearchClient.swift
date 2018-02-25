@@ -1,5 +1,5 @@
 //
-//  GithubClient.swift
+//  GithubSearchClient.swift
 //  GithubApp
 //
 //  Created by Marcin on 24/02/2018.
