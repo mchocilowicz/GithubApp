@@ -20,8 +20,6 @@ class SearchViewController: UIViewController
     
 // MARK: Privates
     
-    private var userModels: [GithubModel] = []
-    private var repositoryModels: [GithubModel] = []
     private let dispatchGroup = DispatchGroup()
     private let cellId = "Cell"
     private let searchDelay: Double = 0.7
@@ -81,26 +79,31 @@ class SearchViewController: UIViewController
     
     private func requestData(_ text: String)
     {
+        var userModels: [GithubModel] = []
+        var repositoryModels: [GithubModel] = []
         dispatchGroup.enter()
-        githubSearchService.searchRepositories(with: text) { result , error in
+        githubSearchService.searchRepositories(with: text) {[weak self] result , error in
+            guard let `self` = self  else { return }
             guard let model = result else {
                 self.displayAlertOnError(error!)
                 return
             }
-            self.repositoryModels = model
+            repositoryModels = model
             self.dispatchGroup.leave()
         }
         dispatchGroup.enter()
-        githubSearchService.searchUsers(with: text) { result, error in
+        githubSearchService.searchUsers(with: text) {[weak self] result, error in
+            guard let `self` = self  else { return }
             guard let model = result else {
                 self.displayAlertOnError(error!)
                 return
             }
-            self.userModels = model
+            userModels = model
             self.dispatchGroup.leave()
         }
-        dispatchGroup.notify(queue: .main) {
-            self.processDataBeforeDisplay()
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let `self` = self else {return}
+            self.processModelsBeforeDisplay(userModels,repositoryModels)
         }
     }
     
@@ -111,11 +114,11 @@ class SearchViewController: UIViewController
         self.present(alert, animated: true)
     }
     
-    private func processDataBeforeDisplay()
+    private func processModelsBeforeDisplay(_ users: [GithubModel], _ repositories: [GithubModel])
     {
         self.tableViewModels.removeAll()
-        self.tableViewModels += self.repositoryModels
-        self.tableViewModels += self.userModels
+        self.tableViewModels += users
+        self.tableViewModels += repositories
         self.tableViewModels.sort(by: { $0.getId() < $1.getId() })
         self.tableView.reloadData()
     }
