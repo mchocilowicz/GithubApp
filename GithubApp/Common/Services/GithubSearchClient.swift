@@ -17,9 +17,12 @@ protocol GithubSearchService
 
 class GithubSearchClient: GithubSearchService
 {
+    
+// MARK: GithubSearchService
+    
     func searchUsers(with username: String, callback: @escaping ([GithubUser]?, String?) -> ())
     {
-        Alamofire.request("https://api.github.com/search/users",parameters: createParams(username)).responseData { response in
+        Alamofire.request("https://api.github.com/search/users",parameters: createParams(username), headers: createRequestHeader()).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -34,7 +37,7 @@ class GithubSearchClient: GithubSearchService
     
     func searchRepositories(with name: String, callback: @escaping ([GithubRepository]?, String?) -> ())
     {
-        Alamofire.request("https://api.github.com/search/repositories",parameters: createParams(name)).responseData { response in
+        Alamofire.request("https://api.github.com/search/repositories",parameters: createParams(name), headers: createRequestHeader()).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -47,10 +50,15 @@ class GithubSearchClient: GithubSearchService
         }
     }
     
+// MARK: Private
+    
     private func createParams(_ query: String) -> Parameters
     {
-        return [
-            "q": query
-        ]
+        return ["q": query]
+    }
+    
+    private func createRequestHeader() -> [String: String]
+    {
+        return ["Accept":"application/vnd.github.v3+json"]
     }
 }

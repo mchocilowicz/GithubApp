@@ -19,8 +19,11 @@ protocol GithubProfileService
 
 class GithubProfileClient: GithubProfileService
 {
+    
+// MARK: GithubProfileService
+    
     func getProfileData(for username: String, callback: @escaping (GithubProfileResponse?,String?) -> ()) {
-        Alamofire.request("https://api.github.com/users/\(username)").responseData { response in
+        Alamofire.request("https://api.github.com/users/\(username)", headers: createRequestHeader()).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -44,7 +47,7 @@ class GithubProfileClient: GithubProfileService
     }
     
     func getStars(for username: String, callback: @escaping ([GithubRepository]?, String?) -> ()) {
-        Alamofire.request("https://api.github.com/users/\(username)/repos").responseData { response in
+        Alamofire.request("https://api.github.com/users/\(username)/repos", headers: createRequestHeader()).responseData { response in
             let decoder = JSONDecoder()
             guard let data = response.data else { return }
             do {
@@ -57,6 +60,12 @@ class GithubProfileClient: GithubProfileService
         }
     }
     
+// MARK: Private
+    
+    private func createRequestHeader() -> [String: String]
+    {
+        return ["Accept":"application/vnd.github.v3+json"]
+    }
 
 }
 
