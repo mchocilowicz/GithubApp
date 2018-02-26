@@ -7,29 +7,63 @@
 //
 
 import XCTest
+@testable import GithubApp
 
-class SearchViewControllerTests: XCTestCase {
+class SearchViewControllerTests: XCTestCase
+{
     
-    override func setUp() {
+    var searchViewController: SearchViewController! = nil
+    
+    override func setUp()
+    {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        searchViewController = SearchViewController(GithubSearchClientMock())
+        _ = searchViewController.view
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown()
+    {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testHaveTableView()
+    {
+        XCTAssertNotNil(searchViewController.tableView)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testTableViewModelsIsEmpty()
+    {
+        XCTAssertTrue(searchViewController.tableViewModels.isEmpty)
+    }
+    
+    func testServiceIsAvilable()
+    {
+        XCTAssertNotNil(searchViewController.githubSearchService)
+    }
+    
+    func testHandlerForTextChangeExists()
+    {
+        XCTAssertNotNil(searchViewController.searchTextChanged)
+    }
+    
+    func testReceiveDataAfterDelay()
+    {
+        let sender = UITextField()
+        sender.text = "M"
+        let timer = Timer.scheduledTimer(timeInterval: 1, target: searchViewController , selector: #selector(searchViewController.onSearchTimer(_:)), userInfo: "M", repeats: false)
+        searchViewController.searchTextChanged(sender)
+        searchViewController.onSearchTimer(timer)
+        waitForResponse()
+        XCTAssertFalse(searchViewController.tableViewModels.isEmpty)
+    }
+    
+    func waitForResponse()
+    {
+        let expectation = XCTestExpectation(description: "test")
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 1.0)
     }
     
 }

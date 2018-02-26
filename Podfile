@@ -6,4 +6,8 @@ target 'GithubApp' do
 	pod 'Alamofire'
     pod 'AlamofireImage'
     
+    
+    target 'GithubAppTests' do
+        inherit! :search_paths
+    end
 end
