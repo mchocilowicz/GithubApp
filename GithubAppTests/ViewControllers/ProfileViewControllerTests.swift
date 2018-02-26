@@ -1,15 +1,14 @@
 //
-//  GithubAppTests.swift
+//  ProfileViewControllerTests.swift
 //  GithubAppTests
 //
-//  Created by Marcin on 24/02/2018.
+//  Created by Marcin on 26/02/2018.
 //  Copyright © 2018 Marcin. All rights reserved.
 //
 
 import XCTest
-@testable import GithubApp
 
-class GithubAppTests: XCTestCase {
+class ProfileViewControllerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
