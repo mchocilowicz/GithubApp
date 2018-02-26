@@ -16,7 +16,7 @@ class GithubProfileClientMock: GithubProfileService
 {
     func getProfileData(for username: String, callback: @escaping (GithubProfileResponse?,String?) -> ())
     {
-        guard let response = JsonLoader.getSearchUsersResponse() else {return}
+        guard let response = JsonLoader.getProfileUserResponse() else {return}
         let decoder = JSONDecoder()
         do {
             let result = try decoder.decode(GithubProfileResponse.self, from: response)
@@ -29,12 +29,13 @@ class GithubProfileClientMock: GithubProfileService
     
     func getUserAvatar(with url: String, callback: @escaping (Image?) -> ())
     {
-        return callback(#imageLiteral(resourceName: "avatar.png"))
+        let image = UIImage(named: "avatar", in: Bundle(for: GithubProfileClientMock.self) , compatibleWith: nil)
+        return callback(image)
     }
     
     func getStars(for username: String, callback: @escaping ([GithubRepository]?, String?) -> ())
     {
-        guard let response = JsonLoader.getSearchUsersResponse() else {return}
+        guard let response = JsonLoader.getProfileRepositoriesResponse() else {return}
         let decoder = JSONDecoder()
         do {
             let result = try decoder.decode([GithubRepository].self, from: response)

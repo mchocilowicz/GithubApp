@@ -36,7 +36,7 @@
 		D3E6A66A20448B280067BBDD /* ProfileRepositoryResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E6A66920448B280067BBDD /* ProfileRepositoryResponse.json */; };
 		D3E6A66C20448C130067BBDD /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E6A66B20448C130067BBDD /* JsonLoader.swift */; };
 		D3E6A66E2044901E0067BBDD /* ProfileUserResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E6A66D2044901E0067BBDD /* ProfileUserResponse.json */; };
-		D3E6A6702044908F0067BBDD /* avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E6A66F2044908F0067BBDD /* avatar.png */; };
+		D3E6A6722044B07A0067BBDD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E6A6712044B07A0067BBDD /* Images.xcassets */; };
 		DF562470112C109DE1EC57DC /* Pods_GithubAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2627D9EE7BA05A2E9D1E74 /* Pods_GithubAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +89,7 @@
 		D3E6A66920448B280067BBDD /* ProfileRepositoryResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProfileRepositoryResponse.json; sourceTree = "<group>"; };
 		D3E6A66B20448C130067BBDD /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		D3E6A66D2044901E0067BBDD /* ProfileUserResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProfileUserResponse.json; sourceTree = "<group>"; };
-		D3E6A66F2044908F0067BBDD /* avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = avatar.png; sourceTree = "<group>"; };
+		D3E6A6712044B07A0067BBDD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FB8E748E8F7424623E759817 /* Pods-GithubAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GithubAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GithubAppTests/Pods-GithubAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -283,11 +283,11 @@
 		D3E6A662204489520067BBDD /* MockResponses */ = {
 			isa = PBXGroup;
 			children = (
-				D3E6A66F2044908F0067BBDD /* avatar.png */,
 				D3E6A66320448A340067BBDD /* SearchUsersResponse.json */,
 				D3E6A66520448A960067BBDD /* SearchRepositoriesResponse.json */,
 				D3E6A66920448B280067BBDD /* ProfileRepositoryResponse.json */,
 				D3E6A66D2044901E0067BBDD /* ProfileUserResponse.json */,
+				D3E6A6712044B07A0067BBDD /* Images.xcassets */,
 			);
 			path = MockResponses;
 			sourceTree = "<group>";
@@ -406,9 +406,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E6A66620448A960067BBDD /* SearchRepositoriesResponse.json in Resources */,
-				D3E6A6702044908F0067BBDD /* avatar.png in Resources */,
 				D3E6A66420448A340067BBDD /* SearchUsersResponse.json in Resources */,
 				D3E6A66A20448B280067BBDD /* ProfileRepositoryResponse.json in Resources */,
+				D3E6A6722044B07A0067BBDD /* Images.xcassets in Resources */,
 				D3E6A66E2044901E0067BBDD /* ProfileUserResponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
